@@ -5,6 +5,7 @@ import io.restassured.response.Response;
 import model.UnsuccessfulResponse;
 import model.User;
 import model.UserRegisteredResponse;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -35,8 +36,6 @@ public class CreateUserTests {
         assertTrue(response.as(UserRegisteredResponse.class).getSuccess(), "В теле ответа отсутствует success = true");
 
         accessToken = response.as(UserRegisteredResponse.class).getAccessToken();
-        apiClient.delete(accessToken);
-
     }
 
     //создание уже существующего пользователя
@@ -80,6 +79,14 @@ public class CreateUserTests {
         assertEquals(SC_FORBIDDEN, response.statusCode());
         assertEquals(ResponsesCatalogue.getResponseNoNecessaryFields(), response.as(UnsuccessfulResponse.class).getMessage(), "В теле ответа отсутствует message");
     }
+
+    @AfterEach
+    void deleteUser(){
+        if (accessToken != null) {
+            apiClient.delete(accessToken);
+        }
+    }
+
 
 
 }

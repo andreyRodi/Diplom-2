@@ -1,1 +1,0 @@
-{"uuid":"9dc5aa8e-9e8b-429a-a2ed-79a106ee6ef7","name":"getOrderWithoutAuth()","children":["0601febf-eb45-4ae9-9f13-14ce92c15d73"],"befores":[{"name":"setup","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1760284917111,"stop":1760284917112}],"afters":[],"start":1760284917105,"stop":1760284917848}

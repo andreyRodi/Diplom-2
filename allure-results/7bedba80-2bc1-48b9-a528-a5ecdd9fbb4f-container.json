@@ -1,1 +1,0 @@
-{"uuid":"7bedba80-2bc1-48b9-a528-a5ecdd9fbb4f","name":"createOrderWithoutAuth()","children":["457ac8d4-2eb3-4f8b-a86b-9898d21ec4d1"],"befores":[{"name":"setup","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1760284931641,"stop":1760284931641}],"afters":[],"start":1760284931634,"stop":1760284932534}

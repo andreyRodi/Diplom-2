@@ -6,6 +6,7 @@ import model.GetOrderResponse;
 import model.Order;
 import model.User;
 import model.UserRegisteredResponse;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -62,8 +63,6 @@ public class CreateOrderTests {
         } else {
             System.out.println("Сервер вернул 500, тело отсутствует — проверка success пропущена");
         }
-
-        apiClient.delete(accessToken);
     }
 
     //создание заказа без авторизации
@@ -76,4 +75,12 @@ public class CreateOrderTests {
         assertTrue(response.as(GetOrderResponse.class).getSuccess(), "В теле ответа отсутствует success = true");
 
     }
+
+    @AfterEach
+    void deleteUser(){
+        if (accessToken != null) {
+            apiClient.delete(accessToken);
+        }
+    }
+
 }

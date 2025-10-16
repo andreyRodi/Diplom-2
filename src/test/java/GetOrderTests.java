@@ -4,6 +4,7 @@ import generators.OrderGenerator;
 import io.qameta.allure.junit5.AllureJunit5;
 import io.restassured.response.Response;
 import model.*;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -41,8 +42,6 @@ public class GetOrderTests {
 
         assertEquals(SC_OK, response1.statusCode(), "Response code does not match");
         assertTrue(response1.as(GetOrderResponse.class).getSuccess(), "В теле ответа отсутствует success = true");
-
-        apiClient.delete(accessToken);
     }
 
     //получение списка заказов без авторизации
@@ -55,4 +54,12 @@ public class GetOrderTests {
         assertEquals(SC_UNAUTHORIZED, response1.statusCode(), "Response code does not match");
         assertEquals(ResponsesCatalogue.getResponseNotAuthorized(), response1.as(UnsuccessfulResponse.class).getMessage(), "В теле ответа отсутствует message");
     }
+
+    @AfterEach
+    void deleteUser(){
+        if (accessToken != null) {
+            apiClient.delete(accessToken);
+        }
+    }
+
 }

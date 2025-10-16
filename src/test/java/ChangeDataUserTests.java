@@ -6,6 +6,7 @@ import io.restassured.response.Response;
 import model.UnsuccessfulResponse;
 import model.User;
 import model.UserRegisteredResponse;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -82,6 +83,12 @@ public class ChangeDataUserTests {
             assertEquals(ResponsesCatalogue.getResponseNotAuthorized(), response.as(UnsuccessfulResponse.class).getMessage(), "В теле ответа отсутствует message");
 
 
+        }
+
+        @AfterEach
+        void deleteUser(){
+
+            apiClient.delete(accessToken);
         }
     }
 
